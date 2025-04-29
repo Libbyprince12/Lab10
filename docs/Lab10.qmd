@@ -24,6 +24,7 @@ library(AOI)
 library(gghighlight)
 library(ggrepel)
 library(knitr)
+library(here)
 ```
 Question 1
 ```{r}
@@ -42,8 +43,13 @@ countries <- aoi_get(country = c("MX", "CA", "USA"))
 ```
 
 ```{r}
-#1.4- Get city locations from the CSV file
-cities_data <- readr::read_csv("data/uscities.csv")
+# Load necessary libraries
+library(readr)   # For read_csv()
+library(sf)      # For spatial functions
+library(here)    # For relative file paths
+
+# Load the city data from the CSV file
+cities_data <- read_csv(here("data", "uscities.csv"))
 
 # Convert to spatial object using latitude and longitude columns
 cities_sf <- st_as_sf(cities_data, coords = c("lng", "lat"), crs = 4326)
