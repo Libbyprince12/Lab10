@@ -70,11 +70,16 @@ head(cities_sf_eqdc)
 ```{r}
 library(ggplot2)
 
-# Plot the cities in the new projected coordinate system
-ggplot() + 
+# Create the plot
+p <- ggplot() + 
   geom_sf(data = cities_sf_eqdc) + 
   coord_sf(datum = st_crs(cities_sf_eqdc)) + 
   theme_minimal()
+
+# Save the plot to the 'docs/images/' folder
+ggsave(filename = here::here("docs", "images", "cities_map.png"), plot = p, width = 8, height = 6)
+```
+
 ```
 
 2.1- distance to the usa national border
